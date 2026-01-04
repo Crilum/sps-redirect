@@ -3,11 +3,11 @@
 <head>
     <title>Spring City Sourdough</title>
     <meta name="description" content="Order bread from Spring City Sourdough here!">
+    <script data-goatcounter="https://crilum.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
     <!-- Cloudflare Web Analytics -->
     <script src='https://static.cloudflareinsights.com/beacon.min.js'
         data-cf-beacon='{"token": "82c192d14a4a4d5c969a69220d0fb001"}'></script><!-- End Cloudflare Web Analytics -->
-    <script data-goatcounter="https://crilum.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
     <script>
         function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
@@ -15,7 +15,6 @@
         async function main(params) {
             await sleep(5000);
             console.log("Redirecting...");
-            window.location.replace("https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94");
         }
         main();
     </script>
@@ -23,4 +22,5 @@
 
 <body>
     <h3 style="text-align: center; padding-top: 50px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Redirecting to Spring City Sourdough...</h3>
+    <button onclick="window.location.replace('https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94');">Take me shopping!</button>
 </body>
