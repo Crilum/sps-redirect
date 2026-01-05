@@ -1,11 +1,34 @@
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Spring City Sourdough</title>
-    <meta name="description" content="Order bread from Spring City Sourdough here!">
-    <script>
-        window.location.replace("https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94");
-    </script>
+  <meta charset="utf-8" />
+  <title>Spring City Sourdough</title>
+  <meta name="description" content="Order bread from Spring City Sourdough here!">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- GoatCounter -->
+  <script async data-goatcounter="https://crilum.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <!-- Cloudflare Web Analytics (may be blocked, harmless if so) -->
+  <script async
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"82c192d14a4a4d5c969a69220d0fb001"}'>
+  </script>
 </head>
+
 <body>
-    <h3 style="text-align: center; padding-top: 50px;">Redirecting to Spring City Sourdough...</h3>
+  <!--<h3 style="text-align:center;padding-top:50px;font-family:Verdana,Geneva,Tahoma,sans-serif;">
+    Redirecting to Spring City Sourdough…
+  </h3>-->
+
+  <script>
+    const target =
+      "https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94";
+
+    // Give analytics scripts a moment, then redirect
+    setTimeout(() => {
+      window.location.replace(target);
+    }, 800);
+  </script>
 </body>
+</html>
