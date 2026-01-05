@@ -1,28 +1,68 @@
-<!DOCTYPE html>
-
+<!doctype html>
+<html lang="en">
 <head>
-    <title>Spring City Sourdough</title>
-    <meta name="description" content="Order bread from Spring City Sourdough here!">
-    <script data-goatcounter="https://crilum.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
-    <!-- Cloudflare Web Analytics -->
-    <script src='https://static.cloudflareinsights.com/beacon.min.js'
-        data-cf-beacon='{"token": "82c192d14a4a4d5c969a69220d0fb001"}'></script><!-- End Cloudflare Web Analytics -->
-    
+  <meta charset="utf-8" />
+  <title>Spring City Sourdough</title>
+  <meta name="description" content="Order bread from Spring City Sourdough here!">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- GoatCounter -->
+  <script data-goatcounter="https://crilum.goatcounter.com/count"
+          async src="https://gc.zgo.at/count.js"></script>
+
+  <!-- Cloudflare Web Analytics (often blocked by uBlock) -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token":"82c192d14a4a4d5c969a69220d0fb001"}'></script>
 </head>
 
 <body>
-    <h3 style="text-align: center; padding-top: 50px; font-family: Verdana, Geneva, Tahoma, sans-serif;">Redirecting to Spring City Sourdough...</h3>
-    <!--<button onclick="window.location.replace('https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94');">Take me shopping!</button>-->
-    <script>
-        function sleep(ms) {
-            return new Promise(resolve => setTimeout(resolve, ms));
+  <h3 style="text-align:center;padding-top:50px;font-family:Verdana,Geneva,Tahoma,sans-serif;">
+    Redirecting to Spring City Sourdough...
+  </h3>
+
+  <script>
+    const target = "https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94";
+
+    function fireAnalyticsThenRedirect() {
+      // 1) Try GoatCounter's JS API if it has loaded in time
+      try {
+        if (window.goatcounter && typeof window.goatcounter.count === "function") {
+          window.goatcounter.count({
+            path: location.pathname + location.search,
+            title: document.title,
+            event: true
+          });
+        } else {
+          // 2) Fallback: send a beacon-style hit to GoatCounter directly
+          //    (works better during navigation than relying on a script that might not finish loading)
+          const payload = JSON.stringify({
+            no_sessions: true,
+            path: location.pathname + location.search,
+            title: document.title,
+            referrer: document.referrer || null,
+            event: true
+          });
+
+          // Prefer sendBeacon if available
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon("https://crilum.goatcounter.com/count", payload);
+          } else {
+            // Last resort: keepalive fetch
+            fetch("https://crilum.goatcounter.com/count", {
+              method: "POST",
+              body: payload,
+              headers: { "Content-Type": "application/json" },
+              keepalive: true
+            }).catch(() => {});
+          }
         }
-        async function main(params) {
-            //await sleep(5000);
-            console.log("Redirecting...");
-            window.location.replace('https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94');
-        }
-        main();
-    </script>
+      } catch (_) {}
+
+      // Small delay to let the request get out
+      setTimeout(() => location.replace(target), 200);
+    }
+
+    fireAnalyticsThenRedirect();
+  </script>
 </body>
+</html>
