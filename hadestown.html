@@ -6,61 +6,30 @@
   <meta name="description" content="Order bread from Spring City Sourdough here!">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- GoatCounter (Option 1: first-party path) -->
-  <meta name="goatcounter" content="https://crilum.goatcounter.com/count" />
+  <!-- GoatCounter -->
+  <meta name="goatcounter" content="https://crilum.goatcounter.com/count">
   <script async src="/count.js"></script>
 
-  <!-- Cloudflare Web Analytics (often blocked by uBlock) -->
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon='{"token":"82c192d14a4a4d5c969a69220d0fb001"}'></script>
+  <!-- Cloudflare Web Analytics (may be blocked, harmless if so) -->
+  <script defer
+    src="https://static.cloudflareinsights.com/beacon.min.js"
+    data-cf-beacon='{"token":"82c192d14a4a4d5c969a69220d0fb001"}'>
+  </script>
 </head>
 
 <body>
   <h3 style="text-align:center;padding-top:50px;font-family:Verdana,Geneva,Tahoma,sans-serif;">
-    Redirecting to Spring City Sourdough...
+    Redirecting to Spring City Sourdough…
   </h3>
 
   <script>
-    const target = "https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94";
+    const target =
+      "https://app.simply-bread.co/store/86370b4c-e297-4ace-b02c-8ab884c46f94";
 
-    function fireAnalyticsThenRedirect() {
-      // Try GoatCounter API if it exists (depends on script load timing)
-      try {
-        if (window.goatcounter && typeof window.goatcounter.count === "function") {
-          window.goatcounter.count({
-            path: location.pathname + location.search,
-            title: document.title,
-            event: true
-          });
-        } else {
-          // Fallback: use unload-safe beacon to GoatCounter first-party endpoint
-          const payload = JSON.stringify({
-            no_sessions: true,
-            path: location.pathname + location.search,
-            title: document.title,
-            referrer: document.referrer || null,
-            event: true
-          });
-
-          // In Option 1, GoatCounter exposes /count as the local endpoint on your domain
-          if (navigator.sendBeacon) {
-            navigator.sendBeacon("/count", payload);
-          } else {
-            fetch("/count", {
-              method: "POST",
-              body: payload,
-              headers: { "Content-Type": "application/json" },
-              keepalive: true
-            }).catch(() => {});
-          }
-        }
-      } catch (_) {}
-
-      // Small delay to let the request get out
-      //setTimeout(() => location.replace(target), 200);
-    }
-
-    fireAnalyticsThenRedirect();
+    // Give analytics scripts a moment, then redirect
+    setTimeout(() => {
+      window.location.replace(target);
+    }, 400);
   </script>
 </body>
 </html>
